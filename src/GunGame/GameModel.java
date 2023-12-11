@@ -889,5 +889,50 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             }
         }
     }
+    public void fillZombiesArray() {
+        int x, y, z = 0;
+        int numberOfzombies;
+        if (page == "EasyLevel") {
+            numberOfzombies = 20;
+        } else if (page == "MediumLevel") {
+            numberOfzombies = 30;
+        } else {
+            numberOfzombies = 40;
+        }
+        for (int i = 0; i < numberOfzombies; i++) {
+            z += 30;
+            x = maxWidth + 100;
+            y = (int) (Math.random() * 500) + 100;
+            zombies.add(new ZombieModel(x + z, y));
+
+        }
+    }
+
+    public void DrawZombAndiMoved() {
+        zombiedelay++;
+        if (zombiedelay > 20 && !pause) {
+            zombiedelay = 0;
+            clip3.start();
+            if (counter < zombies.size()) {
+                counter++;
+            }
+        }
+
+        Zombidx++;
+        Zombidx %= 17;
+        zombieSpeed = pause ? 0 : page == "EasyLevel" ? 2 : page == "MediumLevel" ? 3 : 5;
+
+        for (int i = 0; i < counter; i++) {
+
+            if (zombies.get(i).kill) {
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, 70);
+            } else {
+                DrawObject(zombies.get(i).x -= zombieSpeed, zombies.get(i).y, 1.0, 1.0, 180, ZombiMove[Zombidx]);
+            }
+            if (zombies.get(i).x < 0) {
+                zombies.get(i).isOutSide = true;
+            }
+        }
+    }
 
 }
