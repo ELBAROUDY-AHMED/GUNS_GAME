@@ -934,5 +934,73 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             }
         }
     }
+    public void DrawMan2() {
+        if (man2.kill) {
+            DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, 70);
+        } else {
+            DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, ManMove2[manidx]);
+        }
+        if (fireMan2) {
+            DrawObject(man2.xMan + directionBullet2.x, man2.yMan + directionBullet2.y, 1.0, 1.0, directionMan2, 67);
+            fireMan2 = false;
+        }
+        for (int i = 0; i < bulletsMan2.size(); i++) {
+            DrawObject(bulletsMan2.get(i).x += bulletsMan2.get(i).xdirection, bulletsMan2.get(i).y += bulletsMan2.get(i).ydirection, 0.15, 0.15, directionMan2, 69); // bullet
+            clip4.start();
+        }
+    }
+    void killMan2() {
+        for (int i = 0; i < bulletsMan2.size(); i++) {
+            for (int j = 0; j < zombies.size(); j++) {
+                if (Math.abs(bulletsMan2.get(i).x - zombies.get(j).x) < 40
+                        && Math.abs(bulletsMan2.get(i).y - zombies.get(j).y) < 40
+                        && bulletsMan2.get(i).x < maxWidth - 120 && !zombies.get(j).kill) {
+                    if (!zombies.get(j).isOutSide) {
+                        zombies.get(j).kill = true;
+                        numberOfkillsPlayer2++;
+                    }
+                    System.out.println("kills player2:" + numberOfkillsPlayer2);
+                    bulletsMan2.get(i).y = 1000;
+                }
+
+            }
+        }
+    }
+    void drawTime() {
+        delayTime++;
+        if (delayTime > 10 && !pause) {
+            time++;
+            delayTime = 0;
+        }
+        ren.beginRendering(300, 300);
+        ren.setColor(Color.WHITE);
+        ren.draw("Time: " + time, 150, 280);
+        ren.setColor(Color.WHITE);
+        ren.endRendering();
+    }
+
+    void drawNumKillsPlayer1() {
+        if (mode == "Muliti") {
+            ren.beginRendering(300, 300);
+            ren.setColor(Color.RED);
+            ren.draw("Kills: " + numberOfkillsPlayer1, 172, 255);
+            ren.setColor(Color.WHITE);
+            ren.endRendering();
+        } else {
+            ren.beginRendering(300, 300);
+            ren.setColor(Color.RED);
+            ren.draw("Kills: " + numberOfkillsPlayer1, 150, 255);
+            ren.setColor(Color.WHITE);
+            ren.endRendering();
+        }
+    }
+
+    void drawNumKillsPlayer2() {
+        ren.beginRendering(300, 300);
+        ren.setColor(Color.BLUE);
+        ren.draw("Kills: " + numberOfkillsPlayer2, 134, 255);
+        ren.setColor(Color.WHITE);
+        ren.endRendering();
+    }
 
 }
