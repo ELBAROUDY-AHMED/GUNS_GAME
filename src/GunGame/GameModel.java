@@ -254,8 +254,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawHealthbarPlayer2();
                     DrawObject(660, 640, 1.5, 0.8, 0, 75);
                     drawTime();
-                    DrawObject(660, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(740, 585, 1.2, 0.6, 0, 75);
                     drawNumKillsPlayer1();
+                    DrawObject(580, 585, 1.2, 0.6, 0, 75);
+                    drawNumKillsPlayer2();
                     DrawObject(1150, 630, 0.75, 0.75, 0, 44);
                     ren.setColor(Color.WHITE);
                     if (pause) {
@@ -316,8 +318,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawHealthbarPlayer2();
                     DrawObject(660, 640, 1.5, 0.8, 0, 75);
                     drawTime();
-                    DrawObject(660, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(740, 585, 1.2, 0.6, 0, 75);
                     drawNumKillsPlayer1();
+                    DrawObject(580, 585, 1.2, 0.6, 0, 75);
+                    drawNumKillsPlayer2();
                     DrawObject(1150, 630, 0.75, 0.75, 0, 44);
                     ren.setColor(Color.WHITE);
                     if (pause) {
@@ -547,7 +551,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         clip4.stop();
                         clip3.setMicrosecondPosition(0);
                         clip3.stop();
-                        page = "home";
+                        if (mode == "Muliti") {
+                            page = "MulitiPlayer";
+                        } else {
+                            page = "SinglePlayer";
+                        }
                         pause = false;
                         defaultGame();
                     }
@@ -594,7 +602,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         clip3.stop();
                         clip4.setMicrosecondPosition(0);
                         clip4.stop();
-                        page = "home";
+                        if (mode == "Muliti") {
+                            page = "MulitiPlayer";
+                        } else {
+                            page = "SinglePlayer";
+                        }
                         pause = false;
                         defaultGame();
                     }
@@ -643,7 +655,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         clip4.stop();
                         clip5.setMicrosecondPosition(0);
                         clip5.stop();
-                        page = "home";
+                        if (mode == "Muliti") {
+                            page = "MulitiPlayer";
+                        } else {
+                            page = "SinglePlayer";
+                        }
                         pause = false;
                         defaultGame();
                     }
@@ -977,7 +993,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     }
     public void DrawMan1() {
         if (man.kill) {
-            DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, 103);
+            DrawObject(man.xMan, man.yMan, 5.0, 4.0, directionMan1, 103);
             delayFinshGame++;
             if (delayFinshGame > 20) {
                 delayFinshGame = 0;
@@ -1082,7 +1098,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     }
     public void DrawMan2() {
         if (man2.kill) {
-            DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, 103);
+            DrawObject(man2.xMan, man2.yMan, 5.0, 4.0, directionMan2, 103);
         } else {
             DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, ManMove2[manidx]);
         }
