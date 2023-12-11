@@ -852,6 +852,42 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             buttonPostionY2 -= 100;
         }
     }
+    public void DrawMan1() {
+        if (man.kill) {
+            DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, 70);
+            delayFinshGame++;
+            if (delayFinshGame > 20) {
+                delayFinshGame = 0;
+                page = "Lose";
+            }
+        } else {
+            DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, ManMove[manidx]);
+        }
+        if (fireMan1) {
+            DrawObject(man.xMan + directionBullet1.x, man.yMan + directionBullet1.y, 1.0, 1.0, directionMan1, 67);
+            fireMan1 = false;
+        }
+        for (int i = 0; i < bulletsMan1.size(); i++) {
+            DrawObject(bulletsMan1.get(i).x += bulletsMan1.get(i).xdirection, bulletsMan1.get(i).y += bulletsMan1.get(i).ydirection, 0.15, 0.15, directionMan1, 69); // bullet
+            clip4.start();
+        }
+    }
+    void killMan1() {
+        for (int i = 0; i < bulletsMan1.size(); i++) {
+            for (int j = 0; j < zombies.size(); j++) {
+                if (Math.abs(bulletsMan1.get(i).x - zombies.get(j).x) < 40
+                        && Math.abs(bulletsMan1.get(i).y - zombies.get(j).y) < 40
+                        && bulletsMan1.get(i).x < maxWidth - 120 && !zombies.get(j).kill) {
+                    if (!zombies.get(j).isOutSide) {
+                        zombies.get(j).kill = true;
+                        numberOfkillsPlayer1++;
+                    }
+                    System.out.println("kills player1:" + numberOfkillsPlayer1);
+                    bulletsMan1.get(i).y = 1000;
+                }
 
+            }
+        }
+    }
 
 }
