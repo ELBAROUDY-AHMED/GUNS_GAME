@@ -1,8 +1,4 @@
 package GunGame;
-
-import GunGame.GameLogic.BulletModel;
-import GunGame.GameLogic.ManModel;
-import GunGame.GameLogic.ZombieModel;
 import com.sun.opengl.util.j2d.TextRenderer;
 import java.awt.Color;
 import java.awt.Font;
@@ -934,6 +930,29 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             }
         }
     }
+
+    void zombieAttack() {
+        for (int i = 0; i < zombies.size(); i++) {
+            if (Math.abs(zombies.get(i).x - man.xMan) < 20 && Math.abs(zombies.get(i).y - man.yMan) < 20) {
+                System.out.println("hit!");
+//                 zombieAttack = 0;
+                if (HealthIndexMan1 == 4) {
+                    man.kill = true;
+                } else if (!zombies.get(i).kill) {
+                    HealthIndexMan1++;
+                }
+            }
+            if (Math.abs(zombies.get(i).x - man2.xMan) < 20 && Math.abs(zombies.get(i).y - man2.yMan) < 20) {
+                System.out.println("hit!");
+//                 zombieAttack = 0;
+                if (HealthIndexMan2 == 4) {
+                    man2.kill = true;
+                } else if (!zombies.get(i).kill) {
+                    HealthIndexMan2++;
+                }
+            }
+        }
+    }
     public void DrawMan2() {
         if (man2.kill) {
             DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, 70);
@@ -1002,5 +1021,40 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         ren.setColor(Color.WHITE);
         ren.endRendering();
     }
+
+    public void DrawHealthbarPlayer1() {
+        DrawObject(200, 640, 3, 0.5, 0, HealthBar[HealthIndexMan1]);
+    }
+
+    public void DrawHealthbarPlayer2() {
+        DrawObject(200, 600, 3, 0.5, 0, HealthBar2[HealthIndexMan2]);
+    }
+
+    public void defaultGame() {
+        time = 0;
+        numberOfkillsPlayer1 = 0;
+        numberOfkillsPlayer2 = 0;
+        directionMan1 = 0;
+        directionMan2 = 0;
+        bulletsMan1.clear();
+        bulletsMan2.clear();
+        man.xMan = 50;
+        man.yMan = 50;
+        man2.xMan = 50;
+        man2.yMan = 400;
+        zombies.clear();
+        fillZombiesArray();
+        man = new ManModel(50, 50);
+        man2 = new ManModel(50, 400);
+        HealthIndexMan1 = 0;
+        HealthIndexMan2 = 0;
+//        page = "home";
+        pause = false;
+        delayStartGame = 0;
+        clip4.stop();
+        clip5.stop();
+    }
+
+
 
 }
