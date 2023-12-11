@@ -136,7 +136,6 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         fillZombiesArray();
     }
 
-    @Override
     public void display(GLAutoDrawable glad) {
         gl = glad.getGL();
         //clip.start();
@@ -224,8 +223,15 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (numberOfkillsPlayer1 == 3) {
+                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                        defaultGame();
                         page = "Win";
+                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
+                        defaultGame();
+                        page = "Win";
+                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        defaultGame();
+                        page = "Lose";
                     }
                 }
                 break;
@@ -275,6 +281,16 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
+                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                        defaultGame();
+                        page = "Win";
+                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
+                        defaultGame();
+                        page = "Win";
+                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        defaultGame();
+                        page = "Lose";
+                    }
                 }
                 break;
             case "HardLevel":
@@ -323,16 +339,26 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
+                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                        defaultGame();
+                        page = "Win";
+                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
+                        defaultGame();
+                        page = "Win";
+                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        defaultGame();
+                        page = "Lose";
+                    }
                 }
                 break;
             case "Win":
                 DrawBackground(12);
-                DrawBackground(100);
-                DrawObject(300, 50, 2.0, 1.0, 0, 8);
-                DrawObject(800, 50, 2.0, 1.0, 0, 101);
+                DrawObject(580, 270, 8.0, 15.0, 0, 100);
                 break;
             case "Lose":
-                DrawObject(600, 300, 1.0, 1.0, 0, 102);
+                DrawBackground(12);
+                DrawObject(550, 350, 4.0, 4.0, 0, 102);
+                DrawObject(550, 100, 2.0, 1.0, 0, 5);
                 break;
         }
     }
@@ -351,6 +377,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         // System.out.println(e.getX() + " " + e.getY());
         switch (page) {
             case "home":
+                if (sound) {
+                    clip.setMicrosecondPosition(0);
+                    clip.start();
+                }
                 if (e.getX() >= 1150 && e.getX() < 1240 && e.getY() > maxHeight - 700 && e.getY() < maxHeight - 650) {
                     sound = !sound;
                     if (sound) {
@@ -468,6 +498,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 break;
             case "EasyLevel":
+                clip.setMicrosecondPosition(0);
+                clip.stop();
+                clip3.setMicrosecondPosition(0);
+                clip3.start();
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
@@ -508,6 +542,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
 
                 break;
             case "MediumLevel":
+                clip.setMicrosecondPosition(0);
+                clip.stop();
+                clip3.setMicrosecondPosition(0);
+                clip3.start();
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
@@ -543,6 +581,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 break;
             case "HardLevel":
+                clip.setMicrosecondPosition(0);
+                clip.stop();
+                clip3.setMicrosecondPosition(0);
+                clip3.start();
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
@@ -554,8 +596,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     if (e.getX() > 485 && e.getX() < 835 && e.getY() > maxHeight - 585 && e.getY() < maxHeight - 505) {
                         page = "HardLevel";
                         pause = false;
-                        clip4.start();
-                        clip5.start();
+                        clip3.setMicrosecondPosition(0);
+                        clip3.stop();
+                        clip4.setMicrosecondPosition(0);
+                        clip4.stop();
+                        clip5.setMicrosecondPosition(0);
+                        clip5.stop();
                     }
                 }
                 if (pause) {
@@ -563,17 +609,69 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         defaultGame();
                         page = "HardLevel";
                         pause = false;
-                        clip4.start();
-                        clip5.start();
+                        clip3.setMicrosecondPosition(0);
+                        clip3.stop();
+                        clip4.setMicrosecondPosition(0);
+                        clip4.stop();
+                        clip5.setMicrosecondPosition(0);
+                        clip5.stop();
                     }
                 }
                 if (pause) {
                     if (e.getX() > 485 && e.getX() < 835 && e.getY() > maxHeight - 295 && e.getY() < maxHeight - 220) {
+                        clip3.setMicrosecondPosition(0);
+                        clip3.stop();
+                        clip4.setMicrosecondPosition(0);
                         clip4.stop();
+                        clip5.setMicrosecondPosition(0);
                         clip5.stop();
                         page = "home";
                         pause = false;
                         defaultGame();
+                    }
+                }
+                break;
+            case "Win":
+                clip3.setMicrosecondPosition(0);
+                clip3.stop();
+                clip.setMicrosecondPosition(0);
+                clip.start();
+                if (e.getX() > 690 && e.getX() < 1045 && e.getY() > maxHeight - 155 && e.getY() < maxHeight - 100) {
+                    defaultGame();
+                    if (page == "EasyLevel") {
+                        page = "MediumLevel";
+                    } else if (page == "MediumLevel") {
+                        page = "HardLevel";
+                    } else if (page == "HardLevel") {
+                        if (mode == "Muliti") {
+                            page = "MulitiPlayer";
+                        } else {
+                            page = "SinglePlayer";
+                        }
+                    }
+                }
+                if (e.getX() > 245 && e.getX() < 615 && e.getY() > maxHeight - 155 && e.getY() < maxHeight - 100) {
+                    defaultGame();
+                    if (mode == "Muliti") {
+                        page = "MulitiPlayer";
+                    } else {
+                        page = "SinglePlayer";
+                    }
+                }
+                break;
+            case "Lose":
+                clip3.setMicrosecondPosition(0);
+                clip3.stop();
+                clip.setMicrosecondPosition(0);
+                clip.start();
+                if (e.getX() > 480 && e.getX() < 735 && e.getY() > maxHeight - 200 && e.getY() < maxHeight - 135) {
+                    defaultGame();
+                    if (mode == "Muliti") {
+                        defaultGame();
+                        page = "MulitiPlayer";
+                    } else {
+                        defaultGame();
+                        page = "SinglePlayer";
                     }
                 }
                 break;
@@ -588,6 +686,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             if (page == "EasyLevel" || page == "MediumLevel" || page == "HardLevel") {
                 clip4.setMicrosecondPosition(0);
                 clip4.start();
+                clip3.setMicrosecondPosition(0);
+                clip3.start();
+                clip.setMicrosecondPosition(0);
+                clip.stop();
             }
         }
     }
@@ -771,7 +873,6 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         fireMan2 = false;
     }
 
-
     public void DrawBackground(int index) {
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);    // Turn Blending On
@@ -814,8 +915,8 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         gl.glPopMatrix();
         gl.glDisable(GL.GL_BLEND);
     }
-    
-       public void DrawHomePage() {
+
+    public void DrawHomePage() {
         DrawBackground(12);
         DrawObject(150, 350, 9.5, 10, 0, 17);
         DrawObject(1150, 630, 0.5, 0.5, 0, soundIdx);
