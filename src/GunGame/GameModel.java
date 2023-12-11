@@ -9,6 +9,7 @@ import javax.media.opengl.glu.GLU;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +19,13 @@ import java.util.BitSet;
 public class GameModel extends AnimListener implements GLEventListener, MouseListener, MouseMotionListener, KeyListener {
 
     TextRenderer ren = new TextRenderer(new Font("sanaSerif", Font.BOLD, 10));
+    TextRenderer ren2 = new TextRenderer(new Font("sanaSerif", Font.BOLD, 16));
+    String NamePlayer1 = "", NamePlayer2 = "";
     GL gl;
     float rotatedX, rotatedY;
     int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx,
             manidx, zombiedelay, counter, time, delayTime, zombieSpeed, delayStartGame,
-            HealthIndexMan1, HealthIndexMan2, directionMan1, directionMan2, delayFinshGame;
+            HealthIndexMan1, HealthIndexMan2, directionMan1, directionMan2, delayFinshGame, getKillsPlayer1, getKillsPlayer2;
     boolean sound = true, fireMan1, fireMan2, isFeetMan1, isFeetMan2, pause, EasyFlag, MediumFlag, HardFlag;
     String page = "home", mode;//EasyLevel
     AudioInputStream audioStream1, audioButtonStream, audioZombiesStream, audioFireStream, audioManFeetStream;
@@ -370,6 +373,29 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             case "EndGame":
                 DrawBackground(12);
                 DrawObject(580, 270, 8.0, 15.0, 0, 100);
+                if(mode == "Muliti"){
+                    if (getKillsPlayer1 > getKillsPlayer2){
+                        drawRank1();
+                        drawRank2();
+                        drawNamePlayer1();
+                        drawNamePlayer2();
+                        drawKillsPlayer1();
+                        drawKillsPlayer2();
+                    }else{
+                        drawRank1();
+                        drawRank2();
+
+                        drawNamePlayer1();
+                        drawNamePlayer2();
+                        drawKillsPlayer1();
+                        drawKillsPlayer2();
+                    }
+
+                }else{
+                    drawRank1();
+                    drawNamePlayer1();
+                    drawKillsPlayer1();
+                }
                 break;
             case "Lose":
                 DrawBackground(12);
@@ -437,12 +463,15 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 490 && e.getY() < maxHeight - 425) {
                     page = "SinglePlayer";
                     mode = "Single";
+                        NamePlayer1 = JOptionPane.showInputDialog(null, "Enter Your Name :");
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 395 && e.getY() < maxHeight - 335) {
                     page = "MulitiPlayer";
                     mode = "Muliti";
+                    NamePlayer1 = JOptionPane.showInputDialog(null, "Enter Player1 Name :");
+                    NamePlayer2 = JOptionPane.showInputDialog(null, "Enter Player2 Name :");
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
@@ -1049,7 +1078,6 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             x = maxWidth + 100;
             y = (int) (Math.random() * 500) + 100;
             zombies.add(new ZombieModel(x + z, y));
-
         }
     }
 
@@ -1171,6 +1199,54 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         ren.endRendering();
     }
 
+    void drawRank1() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw("1", 50, 210);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
+    void drawRank2() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw("2", 50, 190);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
+    void drawNamePlayer1() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(NamePlayer1, 100, 210);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
+    void drawNamePlayer2() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(NamePlayer2, 100, 190);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
+    void drawKillsPlayer1() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(getKillsPlayer1+"", 240, 210);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
+    void drawKillsPlayer2() {
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(getKillsPlayer2+"", 240, 190);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+    }
+
     public void DrawHealthbarPlayer1() {
         DrawObject(200, 640, 3, 0.5, 0, HealthBar[HealthIndexMan1]);
     }
@@ -1181,6 +1257,8 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
 
     public void defaultGame() {
         time = 0;
+        getKillsPlayer1 = numberOfkillsPlayer1;
+        getKillsPlayer2 = numberOfkillsPlayer2;
         numberOfkillsPlayer1 = 0;
         numberOfkillsPlayer2 = 0;
         directionMan1 = 0;
