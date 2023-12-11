@@ -517,12 +517,14 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 break;
             case "EasyLevel":
+            if (!pause){
                 clip.setMicrosecondPosition(0);
                 clip.stop();
                 clip3.setMicrosecondPosition(0);
                 clip3.start();
                 clip4.setMicrosecondPosition(0);
                 clip4.start();
+            }
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
@@ -570,12 +572,14 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 break;
             case "MediumLevel":
-                clip.setMicrosecondPosition(0);
-                clip.stop();
-                clip3.setMicrosecondPosition(0);
-                clip3.start();
-                clip4.setMicrosecondPosition(0);
-                clip4.start();
+                if (!pause){
+                    clip.setMicrosecondPosition(0);
+                    clip.stop();
+                    clip3.setMicrosecondPosition(0);
+                    clip3.start();
+                    clip4.setMicrosecondPosition(0);
+                    clip4.start();
+                }
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
@@ -621,12 +625,14 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 break;
             case "HardLevel":
-                clip.setMicrosecondPosition(0);
-                clip.stop();
-                clip3.setMicrosecondPosition(0);
-                clip3.start();
-                clip4.setMicrosecondPosition(0);
-                clip4.start();
+                if (!pause){
+                    clip.setMicrosecondPosition(0);
+                    clip.stop();
+                    clip3.setMicrosecondPosition(0);
+                    clip3.start();
+                    clip4.setMicrosecondPosition(0);
+                    clip4.start();
+                }
                 if (e.getX() > 30 && e.getX() < 115 && e.getY() > maxHeight - 710 && e.getY() < maxHeight - 670) {
                     if (mode == "Muliti") {
                         page = "MulitiPlayer";
