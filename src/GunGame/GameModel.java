@@ -1070,7 +1070,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         for (int i = 0; i < counter; i++) {
 
             if (zombies.get(i).kill) {
-                DrawObject(zombies.get(i).x, zombies.get(i).y, 5.0, 4.0, 180, 103);
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 5.0, 4.0, 180, 70);
             } else {
                 DrawObject(zombies.get(i).x -= zombieSpeed, zombies.get(i).y, 1.0, 1.0, 180, ZombiMove[Zombidx]);
             }
