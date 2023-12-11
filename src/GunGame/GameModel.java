@@ -52,7 +52,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         "survivor-move_rifle_13_man2",
         "survivor-move_rifle_14_man2", "survivor-move_rifle_15_man2", "survivor-move_rifle_16_man2",
         "survivor-move_rifle_17_man2", "survivor-move_rifle_18_man2", "survivor-move_rifle_19_man2",
-        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver"};
+        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver", "manBlood"};
     TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     int textures[] = new int[textureNames.length];
 
@@ -974,7 +974,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     }
     public void DrawMan1() {
         if (man.kill) {
-            DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, 70);
+            DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, 103);
             delayFinshGame++;
             if (delayFinshGame > 20) {
                 delayFinshGame = 0;
@@ -1079,7 +1079,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     }
     public void DrawMan2() {
         if (man2.kill) {
-            DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, 70);
+            DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, 103);
         } else {
             DrawObject(man2.xMan, man2.yMan, 1.0, 1.0, directionMan2, ManMove2[manidx]);
         }
