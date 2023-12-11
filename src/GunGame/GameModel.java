@@ -23,7 +23,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx,
             manidx, zombiedelay, counter, time, delayTime, zombieSpeed, delayStartGame,
             HealthIndexMan1, HealthIndexMan2, directionMan1, directionMan2, delayFinshGame;
-    boolean sound = true, fireMan1, fireMan2, isFeetMan1, isFeetMan2, pause;
+    boolean sound = true, fireMan1, fireMan2, isFeetMan1, isFeetMan2, pause, EasyFlag, MediumFlag, HardFlag;
     String page = "home", mode;//EasyLevel
     AudioInputStream audioStream1, audioButtonStream, audioZombiesStream, audioFireStream, audioManFeetStream;
     Clip clip, clip2, clip3, clip4, clip5;
@@ -77,7 +77,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             audioStream1 = AudioSystem.getAudioInputStream(new File("Assets//songs//space.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioStream1);
-            //clip.start();
+            clip.start();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -202,6 +202,13 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
+                    if (time == 60) {
+                        defaultGame();
+                        page = "EndGame";
+                    } else if(man.kill && man2.kill) {
+                        defaultGame();
+                        page = "Lose";
+                    }
                 } else {
                     DrawBackground(25);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
@@ -223,13 +230,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                    if (time == 60) {
                         defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
-                        defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        page = "EndGame";
+                    } else if(man.kill) {
                         defaultGame();
                         page = "Lose";
                     }
@@ -260,6 +264,13 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
+                    if (time == 90) {
+                        defaultGame();
+                        page = "EndGame";
+                    } else if(man.kill && man2.kill) {
+                        defaultGame();
+                        page = "Lose";
+                    }
                 } else {
                     DrawBackground(13);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
@@ -281,13 +292,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                    if (time == 90) {
                         defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
-                        defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        page = "EndGame";
+                    } else if(man.kill) {
                         defaultGame();
                         page = "Lose";
                     }
@@ -318,6 +326,13 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
+                    if (time == 120) {
+                        defaultGame();
+                        page = "EndGame";
+                    } else if(man.kill && man2.kill) {
+                        defaultGame();
+                        page = "Lose";
+                    }
                 } else {
                     DrawBackground(20);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
@@ -339,19 +354,16 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (numberOfkillsPlayer1 == 19 && time < 90) {
+                    if (time == 120) {
                         defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 >= 10 && time >= 90) {
-                        defaultGame();
-                        page = "Win";
-                    } else if (numberOfkillsPlayer1 < 10 && time == 90) {
+                        page = "EndGame";
+                    } else if(man.kill) {
                         defaultGame();
                         page = "Lose";
                     }
                 }
                 break;
-            case "Win":
+            case "EndGame":
                 DrawBackground(12);
                 DrawObject(580, 270, 8.0, 15.0, 0, 100);
                 break;
@@ -449,16 +461,19 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 490 && e.getY() < maxHeight - 430) {
                     page = "EasyLevel";
+                    EasyFlag = true;
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 400 && e.getY() < maxHeight - 335) {
                     page = "MediumLevel";
+                    MediumFlag = true;
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 305 && e.getY() < maxHeight - 240) {
                     page = "HardLevel";
+                    HardFlag = true;
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
@@ -579,6 +594,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         defaultGame();
                     }
                 }
+                if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
+                    pause = true;
+                    System.out.println("pause");
+                }
                 break;
             case "HardLevel":
                 clip.setMicrosecondPosition(0);
@@ -630,19 +649,23 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         defaultGame();
                     }
                 }
+                if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
+                    pause = true;
+                    System.out.println("pause");
+                }
                 break;
-            case "Win":
+            case "EndGame":
                 clip3.setMicrosecondPosition(0);
                 clip3.stop();
                 clip.setMicrosecondPosition(0);
                 clip.start();
                 if (e.getX() > 690 && e.getX() < 1045 && e.getY() > maxHeight - 155 && e.getY() < maxHeight - 100) {
                     defaultGame();
-                    if (page == "EasyLevel") {
+                    if (EasyFlag) {
                         page = "MediumLevel";
-                    } else if (page == "MediumLevel") {
+                    } else if (MediumFlag) {
                         page = "HardLevel";
-                    } else if (page == "HardLevel") {
+                    } else if (HardFlag) {
                         if (mode == "Muliti") {
                             page = "MulitiPlayer";
                         } else {
@@ -847,7 +870,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     directionBullet2 = new BulletModel(-70, -20, -100, -100);
                     directionMan2 = 225;
                 }
-                if (keybits.get(KeyEvent.VK_SPACE)) {
+                if (keybits.get(KeyEvent.VK_SPACE) && mode == "Muliti") {
                     bulletsMan2.add(new BulletModel(man2.xMan + directionBullet2.x, man2.yMan + directionBullet2.y, directionBullet2.xdirection, directionBullet2.ydirection));
                     fireMan2 = true;
                     clip4.setMicrosecondPosition(0);

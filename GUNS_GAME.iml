@@ -10,6 +10,5 @@
     <orderEntry type="library" name="lib32" level="project" />
     <orderEntry type="library" name="lib64" level="project" />
     <orderEntry type="library" name="JOGL2" level="project" />
-    <orderEntry type="library" name="lib641" level="project" />
   </component>
 </module>

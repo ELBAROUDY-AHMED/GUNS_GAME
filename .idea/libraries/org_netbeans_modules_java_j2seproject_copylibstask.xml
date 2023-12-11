@@ -2,8 +2,10 @@
   <library name="org-netbeans-modules-java-j2seproject-copylibstask">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/JOGL2" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/JOGL2" recursive="false" />
   </library>
 </component>
