@@ -188,11 +188,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     zombieAttack();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
-                    DrawObject(740, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(750, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
-                    DrawObject(580, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(550, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer2();
                     DrawObject(1150, 630, 0.75, 0.75, 0, 44);
                     ren.setColor(Color.WHITE);
@@ -202,7 +202,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 60) {
+                    if (time == 90) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -218,7 +218,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     killMan1();
                     zombieAttack();
                     DrawHealthbarPlayer1();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
                     DrawObject(660, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
@@ -230,7 +230,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 60) {
+                    if (time == 90) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -252,11 +252,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     zombieAttack();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
-                    DrawObject(740, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(750, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
-                    DrawObject(580, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(550, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer2();
                     DrawObject(1150, 630, 0.75, 0.75, 0, 44);
                     ren.setColor(Color.WHITE);
@@ -266,7 +266,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 90) {
+                    if (time == 120) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -282,7 +282,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     killMan1();
                     zombieAttack();
                     DrawHealthbarPlayer1();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
                     DrawObject(660, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
@@ -294,7 +294,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 90) {
+                    if (time == 120) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -316,11 +316,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     zombieAttack();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
-                    DrawObject(740, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(750, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
-                    DrawObject(580, 585, 1.2, 0.6, 0, 75);
+                    DrawObject(550, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer2();
                     DrawObject(1150, 630, 0.75, 0.75, 0, 44);
                     ren.setColor(Color.WHITE);
@@ -330,7 +330,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 120) {
+                    if (time == 150) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -346,7 +346,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     killMan1();
                     zombieAttack();
                     DrawHealthbarPlayer1();
-                    DrawObject(660, 640, 1.5, 0.8, 0, 75);
+                    DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
                     DrawObject(660, 585, 1.5, 0.6, 0, 75);
                     drawNumKillsPlayer1();
@@ -358,7 +358,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 120) {
+                    if (time == 150) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -564,9 +564,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-                    clip4.setMicrosecondPosition(0);
+//                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-                    clip3.setMicrosecondPosition(0);
+//                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -617,9 +617,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-                    clip4.setMicrosecondPosition(0);
+//                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-                    clip3.setMicrosecondPosition(0);
+//                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -672,9 +672,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-                    clip4.setMicrosecondPosition(0);
+//                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-                    clip3.setMicrosecondPosition(0);
+//                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -1070,7 +1070,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         for (int i = 0; i < counter; i++) {
 
             if (zombies.get(i).kill) {
-                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, 70);
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 5.0, 4.0, 180, 103);
             } else {
                 DrawObject(zombies.get(i).x -= zombieSpeed, zombies.get(i).y, 1.0, 1.0, 180, ZombiMove[Zombidx]);
             }
@@ -1166,7 +1166,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     void drawNumKillsPlayer2() {
         ren.beginRendering(300, 300);
         ren.setColor(Color.BLUE);
-        ren.draw("Kills: " + numberOfkillsPlayer2, 134, 255);
+        ren.draw("Kills: " + numberOfkillsPlayer2, 126, 255);
         ren.setColor(Color.WHITE);
         ren.endRendering();
     }
@@ -1191,7 +1191,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         man.yMan = 50;
         man2.xMan = 50;
         man2.yMan = 400;
-        zombies.clear();
+        zombies.clear();//error of restart from here
         fillZombiesArray();
         man = new ManModel(50, 50);
         man2 = new ManModel(50, 400);
