@@ -183,12 +183,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(25);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
-                    DrawMan2();
                     DrawZombAndiMoved();
                     killMan1();
                     killMan2();
                     zombieAttack();
+                    DrawMan1();
+                    DrawMan2();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
@@ -216,10 +216,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(25);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
                     DrawZombAndiMoved();
                     killMan1();
                     zombieAttack();
+                    DrawMan1();
                     DrawHealthbarPlayer1();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
@@ -233,7 +233,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 90) {
+                    if (time == 50) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -247,12 +247,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(13);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
-                    DrawMan2();
                     DrawZombAndiMoved();
                     killMan1();
                     killMan2();
                     zombieAttack();
+                    DrawMan1();
+                    DrawMan2();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
@@ -269,7 +269,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 120) {
+                    if (time == 75) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -280,10 +280,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(13);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
                     DrawZombAndiMoved();
                     killMan1();
                     zombieAttack();
+                    DrawMan1();
                     DrawHealthbarPlayer1();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
@@ -297,7 +297,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 120) {
+                    if (time == 75) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -311,12 +311,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(20);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
-                    DrawMan2();
                     DrawZombAndiMoved();
                     killMan1();
                     killMan2();
                     zombieAttack();
+                    DrawMan1();
+                    DrawMan2();
                     DrawHealthbarPlayer1();
                     DrawHealthbarPlayer2();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
@@ -333,7 +333,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 150) {
+                    if (time == 100) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -344,10 +344,10 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     DrawBackground(20);//22
                     //DrawObject(250, 650, 3.0, 0.5, 0, 43);
                     //DrawObject(10, 650, 1.0, 1.0, 0, 21);
-                    DrawMan1();
                     DrawZombAndiMoved();
                     killMan1();
                     zombieAttack();
+                    DrawMan1();
                     DrawHealthbarPlayer1();
                     DrawObject(660, 640, 2.0, 0.8, 0, 75);
                     drawTime();
@@ -361,7 +361,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 150) {
+                    if (time == 100) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill) {
@@ -374,23 +374,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 DrawBackground(12);
                 DrawObject(580, 270, 8.0, 15.0, 0, 100);
                 if(mode == "Muliti"){
-                    if (getKillsPlayer1 > getKillsPlayer2){
                         drawRank1();
                         drawRank2();
                         drawNamePlayer1();
                         drawNamePlayer2();
                         drawKillsPlayer1();
                         drawKillsPlayer2();
-                    }else{
-                        drawRank1();
-                        drawRank2();
-
-                        drawNamePlayer1();
-                        drawNamePlayer2();
-                        drawKillsPlayer1();
-                        drawKillsPlayer2();
-                    }
-
                 }else{
                     drawRank1();
                     drawNamePlayer1();
@@ -717,9 +706,14 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     defaultGame();
                     if (EasyFlag) {
                         page = "MediumLevel";
+                        MediumFlag = true;
+                        EasyFlag = false;
                     } else if (MediumFlag) {
                         page = "HardLevel";
+                        HardFlag = true;
+                        MediumFlag = false;
                     } else if (HardFlag) {
+                        HardFlag = false;
                         if (mode == "Muliti") {
                             page = "MulitiPlayer";
                         } else {
@@ -1105,6 +1099,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             if (zombies.get(i).x < 0) {
                 zombies.get(i).isOutSide = true;
             }
+            if(zombies.get(i).x < 0){
+                zombies.get(i).x = 1350;
+            }
         }
     }
 
@@ -1216,35 +1213,67 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     }
 
     void drawNamePlayer1() {
-        ren2.beginRendering(300, 300);
-        ren2.setColor(Color.WHITE);
-        ren2.draw(NamePlayer1, 100, 210);
-        ren2.setColor(Color.WHITE);
-        ren2.endRendering();
+     if (getKillsPlayer1 > getKillsPlayer2){
+         ren2.beginRendering(300, 300);
+         ren2.setColor(Color.WHITE);
+         ren2.draw(NamePlayer1, 100, 210);
+         ren2.setColor(Color.WHITE);
+         ren2.endRendering();
+     }else{
+         ren2.beginRendering(300, 300);
+         ren2.setColor(Color.WHITE);
+         ren2.draw(NamePlayer1, 100, 190);
+         ren2.setColor(Color.WHITE);
+         ren2.endRendering();
+      }
     }
 
     void drawNamePlayer2() {
-        ren2.beginRendering(300, 300);
-        ren2.setColor(Color.WHITE);
-        ren2.draw(NamePlayer2, 100, 190);
-        ren2.setColor(Color.WHITE);
-        ren2.endRendering();
+      if(getKillsPlayer2 > getKillsPlayer1){
+          ren2.beginRendering(300, 300);
+          ren2.setColor(Color.WHITE);
+          ren2.draw(NamePlayer2, 100, 210);
+          ren2.setColor(Color.WHITE);
+          ren2.endRendering();
+      }else{
+          ren2.beginRendering(300, 300);
+          ren2.setColor(Color.WHITE);
+          ren2.draw(NamePlayer2, 100, 190);
+          ren2.setColor(Color.WHITE);
+          ren2.endRendering();
+      }
     }
 
     void drawKillsPlayer1() {
+    if(getKillsPlayer1 > getKillsPlayer2){
         ren2.beginRendering(300, 300);
         ren2.setColor(Color.WHITE);
         ren2.draw(getKillsPlayer1+"", 240, 210);
         ren2.setColor(Color.WHITE);
         ren2.endRendering();
+    }else{
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(getKillsPlayer1+"", 240, 190);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+      }
     }
 
     void drawKillsPlayer2() {
-        ren2.beginRendering(300, 300);
-        ren2.setColor(Color.WHITE);
-        ren2.draw(getKillsPlayer2+"", 240, 190);
-        ren2.setColor(Color.WHITE);
-        ren2.endRendering();
+        if(getKillsPlayer2 > getKillsPlayer1){
+            ren2.beginRendering(300, 300);
+            ren2.setColor(Color.WHITE);
+            ren2.draw(getKillsPlayer2+"", 240, 210);
+            ren2.setColor(Color.WHITE);
+            ren2.endRendering();
+        }else{
+            ren2.beginRendering(300, 300);
+            ren2.setColor(Color.WHITE);
+            ren2.draw(getKillsPlayer2+"", 240, 190);
+            ren2.setColor(Color.WHITE);
+            ren2.endRendering();
+        }
     }
 
     public void DrawHealthbarPlayer1() {
