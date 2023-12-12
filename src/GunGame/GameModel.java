@@ -1269,8 +1269,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         man.yMan = 50;
         man2.xMan = 50;
         man2.yMan = 400;
-        zombies.clear();//error of restart from here
+        zombies.clear();
+        counter = 0 ;//fix Done
         fillZombiesArray();
+        directionBullet1 = new BulletModel(70, -17, 100, 0);
+        directionBullet2 = new BulletModel(70, -17, 100, 0);
         man = new ManModel(50, 50);
         man2 = new ManModel(50, 400);
         HealthIndexMan1 = 0;
