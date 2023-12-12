@@ -55,7 +55,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         "survivor-move_rifle_13_man2",
         "survivor-move_rifle_14_man2", "survivor-move_rifle_15_man2", "survivor-move_rifle_16_man2",
         "survivor-move_rifle_17_man2", "survivor-move_rifle_18_man2", "survivor-move_rifle_19_man2",
-        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver", "manBlood"};
+        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver", "manBlood", "HowToPlay"};
     TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     int textures[] = new int[textureNames.length];
 
@@ -166,7 +166,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 break;
             case "HowPlayButton":
                 DrawBackground(12);
-                DrawObject(400, 360, 5.0, 7.0, 0, 19);
+                DrawObject(400, 360, 5.0, 7.0, 0, 104);
                 DrawObject(400, 70, 2.0, 1.0, 0, 8);
                 DrawObject(10, 650, 1.0, 1.0, 0, 21);
                 ren.setColor(Color.WHITE);
@@ -205,7 +205,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         //ren.setColor(Color.GRAY);
                         ren.endRendering();
                     }
-                    if (time == 90) {
+                    if (time == 50) {
                         defaultGame();
                         page = "EndGame";
                     } else if(man.kill && man2.kill) {
@@ -446,13 +446,13 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 break;
             case "Play":
                 if (sound) {
-                    clip.setMicrosecondPosition(0);
+                    clip.setMicrosecondPosition(3);
                     clip.start();
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 490 && e.getY() < maxHeight - 425) {
                     page = "SinglePlayer";
                     mode = "Single";
-                        NamePlayer1 = JOptionPane.showInputDialog(null, "Enter Your Name :");
+                    NamePlayer1 = JOptionPane.showInputDialog(null, "Enter Your Name :");
                     clip2.setMicrosecondPosition(0);
                     clip2.start();
                 }
@@ -478,7 +478,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             case "SinglePlayer":
             case "MulitiPlayer":
                 if (sound) {
-                    clip.setMicrosecondPosition(0);
+                    clip.setMicrosecondPosition(3);
                     clip.start();
                 }
                 if (e.getX() >= 35 && e.getX() < 285 && e.getY() > maxHeight - 490 && e.getY() < maxHeight - 430) {
@@ -554,7 +554,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     if (e.getX() > 485 && e.getX() < 835 && e.getY() > maxHeight - 585 && e.getY() < maxHeight - 505) {
                         page = "EasyLevel";
                         pause = false;
-
+                        clip.stop();
                     }
                 }
                 if (pause) {
@@ -562,7 +562,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                         defaultGame();
                         page = "EasyLevel";
                         pause = false;
-
+                        clip.stop();
                     }
                 }
                 if (pause) {
@@ -582,9 +582,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-//                    clip4.setMicrosecondPosition(0);
+                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-//                    clip3.setMicrosecondPosition(0);
+                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -635,9 +635,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-//                    clip4.setMicrosecondPosition(0);
+                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-//                    clip3.setMicrosecondPosition(0);
+                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -690,9 +690,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                 }
                 if (e.getX() > 1170 && e.getX() < 1250 && e.getY() < 70 && e.getY() > 25) {
                     pause = true;
-//                    clip4.setMicrosecondPosition(0);
+                    clip4.setMicrosecondPosition(0);
                     clip4.stop();
-//                    clip3.setMicrosecondPosition(0);
+                    clip3.setMicrosecondPosition(0);
                     clip3.stop();
                     System.out.println("pause");
                 }
@@ -1026,7 +1026,6 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             delayFinshGame++;
             if (delayFinshGame > 20) {
                 delayFinshGame = 0;
-                page = "Lose";
             }
         } else {
             DrawObject(man.xMan, man.yMan, 1.3, 1.3, directionMan1, ManMove[manidx]);
