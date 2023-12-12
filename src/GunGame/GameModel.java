@@ -23,8 +23,8 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     String NamePlayer1 = "", NamePlayer2 = "";
     GL gl;
     float rotatedX, rotatedY;
-    int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx, attackZombidx,
-            manidx, zombiedelay, counter, time, delayTime, zombieSpeed, delayStartGame,
+    int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx, attackZombidx2,
+            attackZombidx, manidx, zombiedelay, counter, time, delayTime, zombieSpeed, delayStartGame,
             HealthIndexMan1, HealthIndexMan2, directionMan1, directionMan2, delayFinshGame, getKillsPlayer1, getKillsPlayer2;
     boolean sound = true, fireMan1, fireMan2, isFeetMan1, isFeetMan2, pause, EasyFlag, MediumFlag, HardFlag;
     String page = "home", mode;//EasyLevel
@@ -1095,9 +1095,19 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         for (int i = 0; i < counter; i++) {
             if (zombies.get(i).kill) {
                 DrawObject(zombies.get(i).x, zombies.get(i).y, 5.0, 4.0, 180, 70);
-            } else {
+            } else if(!zombies.get(i).isAttack){
+//                attackZombidx = 0;
                 DrawObject(zombies.get(i).x -= zombieSpeed, zombies.get(i).y, 1.0, 1.0, 180, ZombiMove[Zombidx]);
+            }else if(zombies.get(i).isAttack && !man.kill){
+                attackZombidx++;
+                attackZombidx %= 9;
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, ZombiAttack[attackZombidx]);
+            }else if(zombies.get(i).isAttack && !man2.kill){
+                attackZombidx2++;
+                attackZombidx2 %= 9;
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, ZombiAttack[attackZombidx2]);
             }
+
             if (zombies.get(i).x < 0) {
                 zombies.get(i).isOutSide = true;
             }
@@ -1223,7 +1233,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
          ren2.draw(NamePlayer1, 100, 210);
          ren2.setColor(Color.WHITE);
          ren2.endRendering();
-     }else if(getKillsPlayer2 < getKillsPlayer1){
+     }else if(getKillsPlayer1 < getKillsPlayer2){
          ren2.beginRendering(300, 300);
          ren2.setColor(Color.WHITE);
          ren2.draw(NamePlayer1, 100, 190);
