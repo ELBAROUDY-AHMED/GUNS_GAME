@@ -23,7 +23,7 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
     String NamePlayer1 = "", NamePlayer2 = "";
     GL gl;
     float rotatedX, rotatedY;
-    int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx,
+    int maxWidth = 1280, maxHeight = 720, numberOfkillsPlayer1, numberOfkillsPlayer2, soundIdx, delayFire, Zombidx, attackZombidx,
             manidx, zombiedelay, counter, time, delayTime, zombieSpeed, delayStartGame,
             HealthIndexMan1, HealthIndexMan2, directionMan1, directionMan2, delayFinshGame, getKillsPlayer1, getKillsPlayer2;
     boolean sound = true, fireMan1, fireMan2, isFeetMan1, isFeetMan2, pause, EasyFlag, MediumFlag, HardFlag;
@@ -55,11 +55,14 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         "survivor-move_rifle_13_man2",
         "survivor-move_rifle_14_man2", "survivor-move_rifle_15_man2", "survivor-move_rifle_16_man2",
         "survivor-move_rifle_17_man2", "survivor-move_rifle_18_man2", "survivor-move_rifle_19_man2",
-        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver", "manBlood", "HowToPlay"};
+        "Healthbar100_2", "Healthbar75_2", "Healthbar50_2", "Healthbar25_2", "HSOverlay", "NextButton", "GameOver", "manBlood",
+         "HowToPlay","skeleton-attack_0", "skeleton-attack_1", "skeleton-attack_2", "skeleton-attack_3",
+            "skeleton-attack_4", "skeleton-attack_5", "skeleton-attack_6", "skeleton-attack_7", "skeleton-attack_8"};
     TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     int textures[] = new int[textureNames.length];
 
     int[] ZombiMove = {26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42};
+    int[] ZombiAttack = {105,106,107,108,109,110,111,112,113};
     int[] ManMove = {47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65};
     int[] ManMove2 = {76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95};
     int[] HealthBar = {71, 72, 73, 74, 43};
@@ -1085,11 +1088,11 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         }
 
         Zombidx++;
+        attackZombidx++;
         Zombidx %= 17;
         zombieSpeed = pause ? 0 : page == "EasyLevel" ? 2 : page == "MediumLevel" ? 3 : 5;
 
         for (int i = 0; i < counter; i++) {
-
             if (zombies.get(i).kill) {
                 DrawObject(zombies.get(i).x, zombies.get(i).y, 5.0, 4.0, 180, 70);
             } else {
@@ -1106,8 +1109,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
 
     void zombieAttack() {
         for (int i = 0; i < zombies.size(); i++) {
-            if (Math.abs(zombies.get(i).x - man.xMan) < 20 && Math.abs(zombies.get(i).y - man.yMan) < 20) {
+            if (Math.abs(zombies.get(i).x - man.xMan) < 40 && Math.abs(zombies.get(i).y - man.yMan) < 40) {
                 System.out.println("hit!");
+                zombies.get(i).isAttack = true;
 //                 zombieAttack = 0;
                 if (HealthIndexMan1 == 4) {
                     man.kill = true;
@@ -1115,8 +1119,9 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
                     HealthIndexMan1++;
                 }
             }
-            if (Math.abs(zombies.get(i).x - man2.xMan) < 20 && Math.abs(zombies.get(i).y - man2.yMan) < 20) {
+            if (Math.abs(zombies.get(i).x - man2.xMan) < 40 && Math.abs(zombies.get(i).y - man2.yMan) < 40) {
                 System.out.println("hit!");
+                zombies.get(i).isAttack = true;
 //                 zombieAttack = 0;
                 if (HealthIndexMan2 == 4) {
                     man2.kill = true;
@@ -1218,13 +1223,19 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
          ren2.draw(NamePlayer1, 100, 210);
          ren2.setColor(Color.WHITE);
          ren2.endRendering();
-     }else{
+     }else if(getKillsPlayer2 < getKillsPlayer1){
          ren2.beginRendering(300, 300);
          ren2.setColor(Color.WHITE);
          ren2.draw(NamePlayer1, 100, 190);
          ren2.setColor(Color.WHITE);
          ren2.endRendering();
-      }
+      }else{
+         ren2.beginRendering(300, 300);
+         ren2.setColor(Color.WHITE);
+         ren2.draw(NamePlayer1, 100, 210);
+         ren2.setColor(Color.WHITE);
+         ren2.endRendering();
+     }
     }
 
     void drawNamePlayer2() {
@@ -1232,6 +1243,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
           ren2.beginRendering(300, 300);
           ren2.setColor(Color.WHITE);
           ren2.draw(NamePlayer2, 100, 210);
+          ren2.setColor(Color.WHITE);
+          ren2.endRendering();
+      }else if (getKillsPlayer2 < getKillsPlayer1){
+          ren2.beginRendering(300, 300);
+          ren2.setColor(Color.WHITE);
+          ren2.draw(NamePlayer2, 100, 190);
           ren2.setColor(Color.WHITE);
           ren2.endRendering();
       }else{
@@ -1250,13 +1267,19 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
         ren2.draw(getKillsPlayer1+"", 240, 210);
         ren2.setColor(Color.WHITE);
         ren2.endRendering();
-    }else{
+    }else if (getKillsPlayer1 < getKillsPlayer2){
         ren2.beginRendering(300, 300);
         ren2.setColor(Color.WHITE);
         ren2.draw(getKillsPlayer1+"", 240, 190);
         ren2.setColor(Color.WHITE);
         ren2.endRendering();
-      }
+      }else{
+        ren2.beginRendering(300, 300);
+        ren2.setColor(Color.WHITE);
+        ren2.draw(getKillsPlayer1+"", 240, 210);
+        ren2.setColor(Color.WHITE);
+        ren2.endRendering();
+       }
     }
 
     void drawKillsPlayer2() {
@@ -1264,6 +1287,12 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
             ren2.beginRendering(300, 300);
             ren2.setColor(Color.WHITE);
             ren2.draw(getKillsPlayer2+"", 240, 210);
+            ren2.setColor(Color.WHITE);
+            ren2.endRendering();
+        }else if (getKillsPlayer2 < getKillsPlayer1){
+            ren2.beginRendering(300, 300);
+            ren2.setColor(Color.WHITE);
+            ren2.draw(getKillsPlayer2+"", 240, 190);
             ren2.setColor(Color.WHITE);
             ren2.endRendering();
         }else{
@@ -1316,3 +1345,13 @@ public class GameModel extends AnimListener implements GLEventListener, MouseLis
 
 
 }
+/*
+* make zombie attack :
+* Zombidx %= zombies.get(i).isAttack ? 9 : 17;
+* else if(zombies.get(i).isAttack && !man.kill){
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, ZombiAttack[attackZombidx]);
+            }else if(zombies.get(i).isAttack && !man2.kill){
+                DrawObject(zombies.get(i).x, zombies.get(i).y, 1.0, 1.0, 180, ZombiAttack[Zombidx]);
+            }
+*
+* */
